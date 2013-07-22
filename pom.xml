@@ -18,7 +18,7 @@ http://www.eclipse.org/legal/epl-v10.html
   </parent>
 
   <artifactId>tesla-filelock</artifactId>
-  <version>0.0.1</version>
+  <version>0.0.2-SNAPSHOT</version>
   <inceptionYear>2013</inceptionYear>
 
   <scm>
