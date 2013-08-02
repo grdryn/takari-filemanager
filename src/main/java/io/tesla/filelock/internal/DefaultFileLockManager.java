@@ -24,6 +24,9 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 import java.util.concurrent.atomic.AtomicInteger;
 
+import javax.inject.Named;
+import javax.inject.Singleton;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -36,6 +39,8 @@ import org.slf4j.LoggerFactory;
  * 
  * @author Benjamin Bentmann
  */
+@Named
+@Singleton
 public class DefaultFileLockManager implements FileLockManager {
 
   private Logger logger = LoggerFactory.getLogger(DefaultFileLockManager.class);
