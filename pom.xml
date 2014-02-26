@@ -18,7 +18,7 @@ http://www.eclipse.org/legal/epl-v10.html
   </parent>
 
   <artifactId>takari-filelock</artifactId>
-  <version>0.0.3-SNAPSHOT</version>
+  <version>0.0.3</version>
   <inceptionYear>2013</inceptionYear>
 
   <scm>
