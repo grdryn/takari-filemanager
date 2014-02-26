@@ -12,19 +12,19 @@ http://www.eclipse.org/legal/epl-v10.html
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <groupId>io.tesla</groupId>
-    <artifactId>tesla</artifactId>
-    <version>4</version>
+    <groupId>io.takari</groupId>
+    <artifactId>takari</artifactId>
+    <version>9</version>
   </parent>
 
-  <artifactId>tesla-filelock</artifactId>
+  <artifactId>takari-filelock</artifactId>
   <version>0.0.3-SNAPSHOT</version>
   <inceptionYear>2013</inceptionYear>
 
   <scm>
-    <connection>scm:git:git@github.com:tesla/tesla-filelock.git</connection>
-    <developerConnection>scm:git:git@github.com:tesla/tesla-filelock.git</developerConnection>
-    <url>http://github.com/tesla/tesla-filelock</url>
+    <connection>scm:git:git@github.com:takari/takari-filelock.git</connection>
+    <developerConnection>scm:git:git@github.com:takari/takari-filelock.git</developerConnection>
+    <url>http://github.com/takari/takari-filelock</url>
   </scm>
 
   <properties>
@@ -85,6 +85,5 @@ http://www.eclipse.org/legal/epl-v10.html
         </executions>
       </plugin>
     </plugins>
-  </build>
-  
+  </build>  
 </project>
