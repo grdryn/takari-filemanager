@@ -1,4 +1,4 @@
-package io.tesla.filelock;
+package io.takari.filemanager;
 
 /*******************************************************************************
  * Copyright (c) 2010-2013 Sonatype, Inc.
@@ -9,13 +9,16 @@ package io.tesla.filelock;
  *******************************************************************************/
 
 import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.ByteBuffer;
 
 /**
  * A LockManager holding external locks, locking files between OS processes (e.g. via {@link Lock}.
  * 
  * @author Benjamin Hanzelmann
  */
-public interface FileLockManager {
+public interface FileManager {
 
   /**
    * Obtain a lock object that may be used to lock the target file for reading. This method must not lock that file
@@ -34,4 +37,29 @@ public interface FileLockManager {
    * @return a lock object, never {@code null}.
    */
   Lock writeLock(File target);
+
+  //
+  // This will become a concurrent/process safe file manager and we'll move many of the methods from the LockingFileProcessor and then
+  // make the LockingFileProcessor a thin wrapper around our default FileManager
+  //  
+  boolean mkdirs(File directory);
+
+  void write(File target, String data) throws IOException;
+
+  void write(File target, InputStream source) throws IOException;
+
+  void move(File source, File target) throws IOException;
+
+  void copy(File source, File target) throws IOException;
+
+  long copy(File source, File target, ProgressListener listener) throws IOException;
+
+  /**
+   * A listener object that is notified for every progress made while copying files.
+   * 
+   * @see FileProcessor#copy(File, File, ProgressListener)
+   */
+  public interface ProgressListener {
+    void progressed(ByteBuffer buffer) throws IOException;
+  }
 }

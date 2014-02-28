@@ -1,4 +1,4 @@
-package io.tesla.filelock;
+package io.takari.filemanager;
 
 import java.io.File;
 import java.io.IOException;

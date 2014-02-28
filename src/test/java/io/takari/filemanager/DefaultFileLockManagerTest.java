@@ -1,4 +1,4 @@
-package io.takari.aether.concurrency;
+package io.takari.filemanager;
 
 /*******************************************************************************
  * Copyright (c) 2010-2013 Sonatype, Inc.
@@ -14,8 +14,8 @@ import static org.junit.Assert.assertNotSame;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertTrue;
-import io.tesla.filelock.Lock;
-import io.tesla.filelock.internal.DefaultFileLockManager;
+import io.takari.filemanager.Lock;
+import io.takari.filemanager.internal.DefaultFileManager;
 
 import java.io.File;
 import java.io.IOException;
@@ -31,12 +31,12 @@ import edu.umd.cs.mtc.TestFramework;
 @SuppressWarnings("unused")
 public class DefaultFileLockManagerTest {
 
-  private DefaultFileLockManager manager;
+  private DefaultFileManager manager;
 
   private Process process;
 
-  private DefaultFileLockManager newManager() {
-    return new DefaultFileLockManager();
+  private DefaultFileManager newManager() {
+    return new DefaultFileManager();
   }
 
   @Before
@@ -370,7 +370,7 @@ public class DefaultFileLockManagerTest {
   public void testMultipleManagerInstancesShareTheSameLockTable() throws Exception {
     File file = TestFileUtils.createTempFile("");
 
-    DefaultFileLockManager manager2 = newManager();
+    DefaultFileManager manager2 = newManager();
 
     Lock lock1 = manager.readLock(file);
     Lock lock2 = manager2.readLock(file);

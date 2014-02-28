@@ -1,4 +1,4 @@
-package io.takari.aether.concurrency;
+package io.takari.filemanager;
 
 /*******************************************************************************
  * Copyright (c) 2010-2013 Sonatype, Inc.
@@ -8,8 +8,8 @@ package io.takari.aether.concurrency;
  * http://www.eclipse.org/legal/epl-v10.html
  *******************************************************************************/
 
-import io.tesla.filelock.Lock;
-import io.tesla.filelock.internal.DefaultFileLockManager;
+import io.takari.filemanager.Lock;
+import io.takari.filemanager.internal.DefaultFileManager;
 
 import java.io.File;
 import java.io.IOException;
@@ -23,13 +23,13 @@ import edu.umd.cs.mtc.TestFramework;
 
 @SuppressWarnings("unused")
 public class MultipleThreadsLockManagerTest {
-  private DefaultFileLockManager manager;
+  private DefaultFileManager manager;
 
   private File dir;
 
   @Before
   public void setup() throws IOException {
-    manager = new DefaultFileLockManager();
+    manager = new DefaultFileManager();
     dir = TestFileUtils.createTempDir(getClass().getSimpleName());
   }
 

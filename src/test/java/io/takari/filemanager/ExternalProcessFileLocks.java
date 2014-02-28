@@ -1,4 +1,4 @@
-package io.takari.aether.concurrency;
+package io.takari.filemanager;
 
 /*******************************************************************************
  * Copyright (c) 2010-2013 Sonatype, Inc.
