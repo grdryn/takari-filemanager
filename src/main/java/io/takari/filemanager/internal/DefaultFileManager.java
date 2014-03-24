@@ -70,35 +70,18 @@ public class DefaultFileManager implements FileManager {
   }
 
   /**
-   * Thread-safe variant of {@link File#mkdirs()}. Adapted from Java 6. Creates the directory named by the given
-   * abstract pathname, including any necessary but nonexistent parent directories. Note that if this operation fails
-   * it may have succeeded in creating some of the necessary parent directories.
+   * Null-safe variant of {@link File#mkdirs()}.
    * 
    * @param directory The directory to create, may be {@code null}.
-   * @return {@code true} if and only if the directory was created, along with all necessary parent directories;
-   *         {@code false} otherwise
+   * @return {@code true} if and only if the directory was created, along with all necessary parent
+   *         directories; {@code false} otherwise
    */
   public boolean mkdirs(File directory) {
     if (directory == null) {
       return false;
     }
 
-    if (directory.exists()) {
-      return false;
-    }
-    if (directory.mkdir()) {
-      return true;
-    }
-
-    File canonDir = null;
-    try {
-      canonDir = directory.getCanonicalFile();
-    } catch (IOException e) {
-      return false;
-    }
-
-    File parentDir = canonDir.getParentFile();
-    return (parentDir != null && (mkdirs(parentDir) || parentDir.exists()) && canonDir.mkdir());
+    return directory.mkdirs();
   }
 
   private RandomAccessFile open(File file, String mode) throws IOException {
