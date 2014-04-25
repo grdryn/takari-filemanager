@@ -58,8 +58,6 @@ public class DefaultFileManager implements FileManager {
     return new IndirectFileLock(normalize(target), true);
   }
 
-  //
-
   private File normalize(File file) {
     try {
       return file.getCanonicalFile();
@@ -540,6 +538,7 @@ public class DefaultFileManager implements FileManager {
 
       return copy(sourceLock.getRandomAccessFile(), targetLock.getRandomAccessFile(), listener);
     } finally {
+      target.setLastModified(source.lastModified());
       unlock(sourceLock);
       unlock(targetLock);
     }
@@ -548,20 +547,15 @@ public class DefaultFileManager implements FileManager {
   private long copy(RandomAccessFile rafIn, RandomAccessFile rafOut, ProgressListener listener) throws IOException {
     ByteBuffer buffer = ByteBuffer.allocate(1024 * 32);
     byte[] array = buffer.array();
-
     long total = 0;
-
     for (;;) {
       int bytes = rafIn.read(array);
       if (bytes < 0) {
         rafOut.setLength(rafOut.getFilePointer());
         break;
       }
-
       rafOut.write(array, 0, bytes);
-
       total += bytes;
-
       if (listener != null && bytes > 0) {
         try {
           buffer.rewind();
@@ -572,7 +566,6 @@ public class DefaultFileManager implements FileManager {
         }
       }
     }
-
     return total;
   }
 

@@ -8,12 +8,7 @@ package io.takari.filemanager;
  * http://www.eclipse.org/legal/epl-v10.html
  *******************************************************************************/
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNotSame;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertSame;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 import io.takari.filemanager.Lock;
 import io.takari.filemanager.internal.DefaultFileManager;
 
@@ -29,7 +24,7 @@ import edu.umd.cs.mtc.MultithreadedTestCase;
 import edu.umd.cs.mtc.TestFramework;
 
 @SuppressWarnings("unused")
-public class DefaultFileLockManagerTest {
+public class DefaultFileManagerTest {
 
   private DefaultFileManager manager;
 
@@ -388,4 +383,14 @@ public class DefaultFileLockManagerTest {
     }
   }
 
+  @Test
+  public void testCopiedFilesHaveTheSameLastModifiedTime() throws Exception {
+    File source = TestFileUtils.createTempFile("bytes");
+    source.setLastModified(source.lastModified() - 86400000); // -1 day
+    File target = new File(TestFileUtils.createTempDir(), "target.txt");
+    DefaultFileManager manager = newManager();
+    manager.copy(source, target);
+    assertEquals("We expect the length of the source and target to be equal.", source.length(), target.length());
+    assertEquals("We expect the last modified time of the source and target to be equal.", source.lastModified(), target.lastModified());
+  }
 }
