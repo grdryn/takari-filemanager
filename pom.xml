@@ -22,9 +22,9 @@ http://www.eclipse.org/legal/epl-v10.html
   <inceptionYear>2013</inceptionYear>
 
   <scm>
-    <connection>scm:git:git@github.com:takari/takari-filelock.git</connection>
-    <developerConnection>scm:git:git@github.com:takari/takari-filelock.git</developerConnection>
-    <url>http://github.com/takari/takari-filelock</url>
+    <connection>scm:git:git@github.com:takari/takari-filemanager.git</connection>
+    <developerConnection>scm:git:git@github.com:takari/takari-filemanager.git</developerConnection>
+    <url>http://github.com/takari/takari-filemanager</url>
   </scm>
 
   <properties>
